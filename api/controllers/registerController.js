@@ -21,4 +21,4 @@ routerUser.post('/', validateUser, rescue(async (req,res, next) =>{
   return res.status(200).json({message: 'usuario criado com sucesso', token});
 }));
 
-module.exports = routerUser;
+module.exports = { routerUser };
