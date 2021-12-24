@@ -17,9 +17,9 @@ routerMerchantCatalog.get('/list_products', rescue(async (req, res, _next) => {
   });
   try {
     const { data } = await APIPOST.get(`/catalog/v1.0/merchants/${merchantId}/products?page=1&limit=10`)
-    return res.json({data});
+    return res.json(data);
   } catch (error) {
-    return res.json({error});
+    return res.json(error);
   }
 }));
 
