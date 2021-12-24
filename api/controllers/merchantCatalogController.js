@@ -5,14 +5,14 @@ require('dotenv').config();
 
 const routerMerchantCatalog = express.Router();
 
-routerMerchantCatalog.post('/list_products', rescue(async (req, res, _next) => {
-  const { token } = req.body
+routerMerchantCatalog.get('/list_products', rescue(async (req, res, _next) => {
+  const { authorization } = req.headers
   const merchantId = process.env.MERCHANT_ID
   const APIPOST = axios.create({
     baseURL: 'https://merchant-api.ifood.com.br',
     headers: {
       'Host': 'merchant-api.ifood.com.br',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `${authorization}`
     }
   });
   try {
