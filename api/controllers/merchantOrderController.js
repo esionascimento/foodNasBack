@@ -3,11 +3,10 @@ const rescue = require('express-rescue');
 const axios = require('axios')
 require('dotenv').config();
 
-const routerMerchantCatalog = express.Router();
+const routerMerchantOrder = express.Router();
 
-routerMerchantCatalog.get('/list_products', rescue(async (req, res, _next) => {
+routerMerchantOrder.get('/event:polling', rescue(async (req, res, _next) => {
   const { authorization } = req.headers
-  const merchantId = process.env.MERCHANT_ID
   const APIPOST = axios.create({
     baseURL: 'https://merchant-api.ifood.com.br',
     headers: {
@@ -16,11 +15,13 @@ routerMerchantCatalog.get('/list_products', rescue(async (req, res, _next) => {
     }
   });
   try {
-    const { data } = await APIPOST.get(`/catalog/v1.0/merchants/${merchantId}/products?page=1&limit=10`)
-    return res.json(data);
+    const { status, data } = await APIPOST.get(`/order/v1.0/events:polling`)
+    console.log('status :', status);
+    console.log('data :', data);
+    return res.json({ status, data});
   } catch (error) {
     return res.json(error);
   }
 }));
 
-module.exports = { routerMerchantCatalog };
+module.exports = { routerMerchantOrder };
