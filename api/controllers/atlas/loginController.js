@@ -12,7 +12,6 @@ routerLogin.post('/', validateLogin, rescue(async (req, res, next) => {
     return next(result);
   }
   const { _id, name, email, token } = result;
-  console.log('result :', result);
   return res.status(200).json({message: 'Login success', _id, name, email, token});
 }));
 
