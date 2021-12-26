@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-const { errorConnect } = require('../middlewares/constructError');
 require('dotenv').config();
 
 const OPTIONS = {
@@ -18,9 +17,5 @@ function connection() {
       .then((conn) => {
         db = conn.db(DB_NAME);
         return db;
-      }).catch(() => {
-        return errorConnect('Error: connect falid');
       });
 }
-
-module.exports = connection;
