@@ -1,8 +1,8 @@
 const express = require('express');
 const rescue =  require('express-rescue');
 
-const { createService, getAll } = require('../services/registerService');
-const validateUser = require('../middlewares/validate/register');
+const { createService, getAll } = require('../../services/registerService');
+const validateUser = require('../../middlewares/validate/register');
 
 const routerUser = express.Router();
 

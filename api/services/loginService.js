@@ -10,7 +10,6 @@ const loginService = async ({ email, password }) => {
   if (!result) {
     return errorEmailInvalid('Error: email não registrado');
   }
-  console.log('result :', result);
   const { _id, name } = result;
   const { password: hash } = result;
   if (bcrypt.compareSync(password, hash)) {
