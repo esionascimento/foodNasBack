@@ -10,7 +10,7 @@ const loginService = async ({ email, password }) => {
   if (!result) {
     return errorEmailInvalid('Error: email não registrado');
   }
-  const { _id, name } = result;
+  const { _id, name, idStore } = result;
   const { password: hash } = result;
   if (bcrypt.compareSync(password, hash)) {
     const token = await jwt.sign({ _id, name, email }, process.env.SECRET, {
@@ -20,6 +20,7 @@ const loginService = async ({ email, password }) => {
       _id,
       name,
       email,
+      idStore,
       token
     };
   }
