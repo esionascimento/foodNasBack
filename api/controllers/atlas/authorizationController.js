@@ -5,14 +5,14 @@ require('dotenv');
 
 const routerAuth = express.Router();
 
-routerAuth.post('/', rescue(async (req,res, next) =>{
-  const { token } = req.body;
+routerAuth.get('/', rescue(async (req,res, _next) =>{
+  const { authorization } = req.headers;
 
-  if(!token) {
+  if(!authorization) {
     return res.status(401).send({ auth: false, message: 'Token não informado.' }); 
   }
   const secret = process.env.SECRET;
-  jwt.verify(token, secret, function(err, decoded) { 
+  jwt.verify(authorization, secret, function(err, _decoded) { 
     if (err) {
       return res.status(500).send({ auth: false, message: 'Token inválido.' });
     }

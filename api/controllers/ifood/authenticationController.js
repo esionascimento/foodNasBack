@@ -26,7 +26,7 @@ routerAuthentication.post('/usercode', rescue(async (req, res, _next) => {
   }
 }));
 
-routerAuthentication.get('/token/centralized', rescue(async (req, res, _next) => {
+routerAuthentication.get('/token/centralized', rescue(async (_req, res, _next) => {
   const grantType = process.env.GRANT_TYPE;
   const clientSecret = process.env.CLIENT_SECRET;
   const clientId= process.env.CLIENT_ID;
