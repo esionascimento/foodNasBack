@@ -12,7 +12,7 @@ routerLogin.post('/', validateLogin, rescue(async (req, res, next) => {
     return next(result);
   }
   const { _id, name, email, idStore, token } = result;
-  return res.status(200).json({message: 'Login success', _id, name, email, idStore, token});
+  return res.status(200).json({_id, name, email, idStore, token});
 }));
 
 module.exports = { routerLogin };
