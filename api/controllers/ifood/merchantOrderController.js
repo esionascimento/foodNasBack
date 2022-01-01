@@ -24,4 +24,22 @@ routerMerchantOrder.get('/event:polling', rescue(async (req, res, _next) => {
   }
 }));
 
+routerMerchantOrder.post('/event/acknowledgment', rescue(async (req, res) => {
+  const { authorization } = req.headers
+  const APIPOST = axios.create({
+    baseURL: 'https://merchant-api.ifood.com.br',
+    headers: {
+      'Host': 'merchant-api.ifood.com.br',
+      'Authorization': `${authorization}`
+    }
+  });
+  try {
+    const data = await APIPOST.post(`/order/v1.0/events/acknowledgment`)
+    console.log('data :', data);
+    return res.json({ data});
+  } catch (error) {
+    return res.json(error);
+  }
+}));
+
 module.exports = { routerMerchantOrder };
