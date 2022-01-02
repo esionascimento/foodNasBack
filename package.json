@@ -23,7 +23,10 @@
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.2",
-    "qs": "^6.10.2"
+    "mysql2": "^2.3.3",
+    "qs": "^6.10.2",
+    "sequelize": "^7.0.0-alpha.4",
+    "sequelize-cli": "^6.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
