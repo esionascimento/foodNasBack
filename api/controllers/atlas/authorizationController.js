@@ -1,7 +1,7 @@
 const express = require('express');
 const rescue =  require('express-rescue');
 const jwt = require('jsonwebtoken');
-require('dotenv');
+require('dotenv').config();
 
 const routerAuth = express.Router();
 
