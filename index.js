@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
+require("./api/database");
 
 const routers = require('./api/routes');
 const middleError = require('./api/middlewares/error');
