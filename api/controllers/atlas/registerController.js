@@ -1,5 +1,6 @@
 const express = require('express');
 const rescue =  require('express-rescue');
+/* const User = require('../../models/UserModel'); */
 
 const { createService, getAll } = require('../../services/registerService');
 const validateUser = require('../../middlewares/validate/register');
