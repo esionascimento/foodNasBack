@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      name: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -21,22 +21,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      idStore: {
+      id_store: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updated_at: {
-        type: Sequelize.DATE,
         allowNull: false
       }
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, _Sequelize) => {
     return queryInterface.dropTable('users');
   }
 };
