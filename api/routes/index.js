@@ -20,5 +20,6 @@ routers.use('/merchant/catalog', routerMerchantCatalog)
 routers.use('/merchant/merchant', routerMerchant)
 routers.use('/merchant/order', routerMerchantOrder)
 routers.post('/userss', UserController.store);
+routers.get('/userss', UserController.index);
 
 module.exports = routers;
