@@ -6,7 +6,9 @@ const { routerAuthentication} = require('../controllers/ifood/authenticationCont
 const { routerMerchantCatalog } = require('../controllers/ifood/merchantCatalogController')
 const { routerMerchant } = require('../controllers/ifood/merchantMerchantController')
 const { routerMerchantOrder } = require('../controllers/ifood/merchantOrderController')
-const { routerAuth } = require('../controllers/atlas/authorizationController')
+const { routerAuth } = require('../controllers/atlas/authorizationController');
+
+const UserController = require('../controllers/UserController');
 
 const routers = express.Router();
 
@@ -17,5 +19,6 @@ routers.use('/merchant/authentication', routerAuthentication)
 routers.use('/merchant/catalog', routerMerchantCatalog)
 routers.use('/merchant/merchant', routerMerchant)
 routers.use('/merchant/order', routerMerchantOrder)
+routers.post('/userss', UserController.store);
 
 module.exports = routers;
