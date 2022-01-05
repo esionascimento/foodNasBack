@@ -14,7 +14,7 @@ module.exports = {
 
 /* module.exports = {
   dialect: 'postgres',
-  host: process.env.DEV_POSTGRE_PASSWORD,
+  host: 'localhost',
   username: process.env.DEV_POSTGRE_USERNAME,
   password: process.env.DEV_POSTGRE_PASSWORD,
   database: process.env.DEV_POSTGRE_DBNAME,
