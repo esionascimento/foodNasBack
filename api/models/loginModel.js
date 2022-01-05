@@ -1,4 +1,4 @@
-const connection = require('./connection');
+/* const connection = require('./connection');
 
 const login = async (email) => {
   const connect = await connection();
@@ -10,3 +10,4 @@ const login = async (email) => {
 };
 
 module.exports = { login };
+ */
