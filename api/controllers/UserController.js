@@ -1,4 +1,5 @@
 const User = require('../models/UserModel');
+const { registerService } = require('../services/RegisterService');
 
 module.exports = {
   async index(_req, res) {
@@ -6,10 +7,14 @@ module.exports = {
     return res.json(users)
   },
   async store(req, res) {
-    const { username, email, password, id_store } = req.body;
+    try {
+      const resultRegister = await registerService(req.body);
+  
+      const { id, username, email, id_store } = resultRegister;
 
-    const user = await User.create({ username, email, password, id_store });
-
-    return res.json(user);
+      return res.json({ id, username, email, id_store });
+    } catch(err) {
+      console.log('err :', err);
+    }
   }
 };
