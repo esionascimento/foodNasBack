@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
-const User = require('../models/User');
+const User = require('../models/UserModel');
+const Address = require('../models/AddressModel');
 
 const connection = new Sequelize(dbConfig);
 
 User.init(connection);
+Address.init(connection);
+
+Address.associate(connection.models);
 
 async function aux() {
   try {

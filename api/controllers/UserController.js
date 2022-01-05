@@ -1,4 +1,6 @@
 const User = require('../models/UserModel');
+const { registerService } = require('../services/RegisterService');
+const { validateUser } = require('../middlewares/validate/register');
 
 module.exports = {
   async index(_req, res) {
@@ -6,10 +8,20 @@ module.exports = {
     return res.json(users)
   },
   async store(req, res) {
-    const { username, email, password, id_store } = req.body;
+    try {
+      const resultJoi = validateUser(req);
 
-    const user = await User.create({ username, email, password, id_store });
+      if (resultJoi.isError) {
+        return res.json(resultJoi);
+      }
+  
+      const resultRegister = await registerService(req.body);
+  
+      const { id, username, email, id_store } = resultRegister;
 
-    return res.json(user);
+      return res.json({ id, username, email, id_store });
+    } catch(err) {
+      console.log('err :', err);
+    }
   }
 };
