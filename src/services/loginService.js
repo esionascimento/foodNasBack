@@ -1,12 +1,16 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { errorPasswordInvalid } = require('../middlewares/constructError');
+const { errorPasswordInvalid, errorEmailInvalid } = require('../middlewares/constructError');
 require('dotenv').config();
 
 const User = require('../models/UserModel');
 
 const LoginService = async ({ email, password }) => {
   const resultLogin = await User.findOne({ where: { email: email}});
+
+  if (!resultLogin) {
+    return errorEmailInvalid('Error: Login email');
+  }
 
   const { id, username, id_store } = resultLogin.dataValues;
   const { password: hash } = resultLogin.dataValues;
