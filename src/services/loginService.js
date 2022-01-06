@@ -2,29 +2,26 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const { login } = require('../models/loginModel');
-const { errorEmailInvalid, errorPasswordInvalid } = require('../middlewares/constructError');
+const User = require('../models/UserModel');
 
-const loginService = async ({ email, password }) => {
-  const result = await login(email);
-  if (!result) {
-    return errorEmailInvalid('Error: email não registrado');
-  }
-  const { _id, name, idStore } = result;
-  const { password: hash } = result;
+const LoginService = async ({ email, password }) => {
+  const resultLogin = await User.findOne({ where: { email: email}});
+
+  const { id, username, id_store } = resultLogin.dataValues;
+  const { password: hash } = resultLogin.dataValues;
+
   if (bcrypt.compareSync(password, hash)) {
-    const token = await jwt.sign({ _id, name, email }, process.env.SECRET, {
+    const token = await jwt.sign({ id, username, email }, process.env.SECRET, {
       expiresIn: 3000
     })
     return {
-      _id,
-      name,
+      id,
+      username,
       email,
-      idStore,
+      id_store,
       token
     };
   }
-  return errorPasswordInvalid('Error: password invalid');
 };
 
-module.exports = { loginService };
+module.exports = { LoginService };
