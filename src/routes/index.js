@@ -19,7 +19,7 @@ routers.use('/merchant/merchant', routerMerchant);
 routers.use('/merchant/order', routerMerchantOrder);
 
 routers.post('/register', RegisterController.store);
-routers.get('/userss', RegisterController.index);
+routers.get('/users/list', RegisterController.index);
 routers.post('/users/:user_id/address', AddressController.store);
 routers.post('/login', LoginController.login);
 
