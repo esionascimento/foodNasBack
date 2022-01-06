@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { errorRegisterJoi } = require('../../middlewares/constructError');
+const { errorRegisterJoi } = require('../constructError');
 
 const validateUser = (req) => {
   const { error } = Joi.object({
