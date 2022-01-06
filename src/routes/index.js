@@ -7,7 +7,7 @@ const { routerMerchant } = require('../controllers/ifood/merchantMerchantControl
 const { routerMerchantOrder } = require('../controllers/ifood/merchantOrderController');
 const { routerAuth } = require('../controllers/atlas/authorizationController');
 
-const UserController = require('../controllers/UserController');
+const RegisterController = require('../controllers/RegisterController');
 const AddressController = require('../controllers/AddressController');
 
 const routers = express.Router();
@@ -19,8 +19,8 @@ routers.use('/merchant/catalog', routerMerchantCatalog);
 routers.use('/merchant/merchant', routerMerchant);
 routers.use('/merchant/order', routerMerchantOrder);
 
-routers.post('/register', UserController.store);
-routers.get('/userss', UserController.index);
+routers.post('/register', RegisterController.store);
+routers.get('/userss', RegisterController.index);
 routers.post('/users/:user_id/address', AddressController.store);
 
 module.exports = routers;
