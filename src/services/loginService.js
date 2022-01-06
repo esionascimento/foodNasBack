@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { errorPasswordInvalid } = require('../middlewares/constructError');
 require('dotenv').config();
 
 const User = require('../models/UserModel');
@@ -22,6 +23,7 @@ const LoginService = async ({ email, password }) => {
       token
     };
   }
+  return errorPasswordInvalid('Error: Login password');
 };
 
 module.exports = { LoginService };
