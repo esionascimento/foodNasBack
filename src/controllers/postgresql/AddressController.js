@@ -1,7 +1,18 @@
-const User = require('../models/UserModel');
-const Address = require('../models/AddressModel');
+const User = require('../../models/UserModel');
+const Address = require('../../models/AddressModel');
 
 module.exports = {
+  async index(req, res) {
+    const { user_id } = req.params;
+    console.log('user_id :', user_id);
+
+    const user = await User.findByPk(user_id, {
+      include: { association: 'addresses' }
+    });
+
+    return res.json(user);
+  },
+
   async store(req, res) {
     const { user_id } = req.params;
     const { zipcode, street, number } = req.body;
