@@ -1,6 +1,6 @@
-const User = require('../models/UserModel');
-const { registerService } = require('../services/RegisterService');
-const { validateUser } = require('../middlewares/validate/register');
+const User = require('../../models/UserModel');
+const { registerService } = require('../../services/RegisterService');
+const { validateUser } = require('../../middlewares/validate/register');
 
 module.exports = {
   async index(_req, res) {
