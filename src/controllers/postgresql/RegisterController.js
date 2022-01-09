@@ -21,7 +21,7 @@ module.exports = {
 
       return res.json({ id, username, email, id_store });
     } catch(err) {
-      console.log('err :', err);
+      return res.status(500).json({ message: 'Error api' });
     }
   }
 };
