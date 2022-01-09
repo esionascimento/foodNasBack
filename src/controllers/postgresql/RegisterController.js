@@ -7,12 +7,12 @@ module.exports = {
     const users = await User.findAll();
     return res.json(users)
   },
-  async store(req, res) {
+  async store(req, res, next) {
     try {
       const resultJoi = validateUser(req);
 
       if (resultJoi.isError) {
-        return res.json(resultJoi);
+        return next(resultJoi);
       }
   
       const resultRegister = await registerService(req.body);
