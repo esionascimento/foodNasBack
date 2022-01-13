@@ -18,7 +18,7 @@ const LoginService = async ({ email, password }) => {
     
     if (bcrypt.compareSync(password, hash)) {
       const token = await jwt.sign({ id, username, email }, process.env.SECRET, {
-        expiresIn: 3000
+        expiresIn: 28800
       })
       return {
         id,
