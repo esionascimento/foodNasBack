@@ -77,4 +77,20 @@ routerMerchantOrder.post('/actions/confirm', rescue(async (req, res) => {
   }
 }));
 
+// /orders/{id}
+routerMerchantOrder.get('/details', rescue(async (req, res) => {
+  const { authorization, order } = req.headers
+  console.log('orderId :', order);
+  const returnApi = APIPOST(authorization);
+
+  try {
+    const { data } = await returnApi.get(`/order/v1.0/orders/${order}`)
+    return res.json(data);
+  } catch (error) {
+  console.log('error :', error);
+
+    return res.json(error);
+  }
+}));
+
 module.exports = { routerMerchantOrder };
