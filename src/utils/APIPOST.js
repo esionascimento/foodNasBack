@@ -4,7 +4,7 @@ const APIPOST = (authorization) =>
   axios.create({
     baseURL: 'https://merchant-api.ifood.com.br',
     headers: {
-      'Host': 'merchant-aapi.ifood.com.br',
+      'Host': 'merchant-api.ifood.com.br',
       'Authorization': `${authorization}`
     }
   });
