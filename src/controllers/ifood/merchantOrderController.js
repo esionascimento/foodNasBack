@@ -15,7 +15,7 @@ routerMerchantOrder.get('/event:polling', rescue(async (req, res, _next) => {
     const { status, data } = await returnApi.get(`/order/v1.0/events:polling`);
     return res.status(status).json({data});
   } catch (error) {
-    return res.json(error);
+    return res.status(error.response.status).json(error);
   }
 }));
 
