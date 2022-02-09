@@ -7,6 +7,7 @@ module.exports = {
     const users = await User.findAll();
     return res.json(users)
   },
+
   async store(req, res, next) {
     try {
       const resultJoi = validateUser(req);
@@ -17,11 +18,11 @@ module.exports = {
   
       const resultRegister = await registerService(req.body);
   
-      const { id, username, email, id_store } = resultRegister;
+      const { id, first_name, email, id_store } = resultRegister;
 
-      return res.json({ id, username, email, id_store });
+      return res.json({ id, first_name, email, id_store });
     } catch(err) {
-      return res.status(500).json({ message: 'Error api' });
+      return res.status(500).json({ message: 'Error api: ', err });
     }
   }
 };
