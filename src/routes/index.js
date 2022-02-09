@@ -13,9 +13,14 @@ const AuthorizationController = require('../controllers/postgresql/Authorization
 const routers = express.Router();
 
 routers.get('/authorization', AuthorizationController.Authorization);
-routers.get('/users/list', RegisterController.index);
-routers.post('/login', LoginController.login);
+
+routers.get('/register', RegisterController.index);
 routers.post('/register', RegisterController.store);
+routers.delete('/register', RegisterController.deleteAll);
+routers.put('/register/:user_id', RegisterController.updateOne);
+
+routers.post('/login', LoginController.login);
+
 routers.post('/users/:user_id/address', AddressController.store);
 routers.get('/users/:user_id/address', AddressController.index);
 
