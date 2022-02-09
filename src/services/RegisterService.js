@@ -3,14 +3,13 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const registerService = async (body) => {
-  const { username, email, password, id_store } = body;
+  const { first_name, last_name, email, birth_date, cnpj, id_store, password } = body;
   
   const saltRounds = Number(process.env.SALT);
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
 
-  const result = await User.create({ username, email, password: hash, id_store });
-  console.log('result :', result);
+  const result = await User.create({ first_name, last_name, email, birth_date, cnpj, id_store, password: hash });
 
   if (result.isError) {
     return result;
