@@ -18,7 +18,11 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      zipcode: {
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      state: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -27,6 +31,10 @@ module.exports = {
         allowNull: false
       },
       number: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      district: {
         type: Sequelize.STRING,
         allowNull: false
       },
