@@ -1,12 +1,12 @@
 const User = require('../../models/UserModel');
-const Address = require('../../models/AddressModel');
+const StoreHours = require('../../models/StoreHoursModel');
 
 module.exports = {
   async index(req, res) {
     const { user_id } = req.params;
 
     const user = await User.findByPk(user_id, {
-      include: { association: 'addresses' }
+      include: { association: 'storehours' }
     });
 
     return res.json(user);
@@ -14,7 +14,7 @@ module.exports = {
 
   async store(req, res) {
     const { user_id } = req.params;
-    const { city, state, street, number, district } = req.body;
+    const { start_time, end_time } = req.body;
 
     const user = await User.findByPk(user_id);
 
@@ -23,12 +23,12 @@ module.exports = {
     }
 
     try {
-      const address = await Address.create({
-        user_id, city, state, street, number, district
+      const store_hours = await StoreHours.create({
+        user_id, start_time, end_time
       });
-      return res.json(address);
+      return res.json(store_hours);
     } catch(err) {
-      console.log('address :', err);
+      console.log('store_hours :', err);
     }
   }
 };
