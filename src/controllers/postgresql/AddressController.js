@@ -4,7 +4,6 @@ const Address = require('../../models/AddressModel');
 module.exports = {
   async index(req, res) {
     const { user_id } = req.params;
-    console.log('user_id :', user_id);
 
     const user = await User.findByPk(user_id, {
       include: { association: 'addresses' }
