@@ -2,39 +2,28 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('store_hours', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      first_name: {
-        type: Sequelize.STRING,
+      user_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'users', key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      password: {
+      start_time: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      id_store: {
+      end_time: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      cnpj: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      birth_date: {
-        type: Sequelize.DATE,
         allowNull: false
       },
       created_at: {
@@ -45,10 +34,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
   down: async (queryInterface, _Sequelize) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('store_hours');
   }
 };
