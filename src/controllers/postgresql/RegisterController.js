@@ -29,5 +29,16 @@ module.exports = {
   async deleteAll(_req, res) {
     const users = await User.destroy({ truncate: { cascade: true } });
     return res.json(users);
-  }
+  },
+
+  async updateOne(req, res) {
+    const { user_id: id } = req.params;
+    const { first_name } = req.body;
+    const users = await User.update({ first_name }, {
+      where: {
+        id
+      }
+    });
+    return res.json(users);
+  },
 };
