@@ -24,5 +24,10 @@ module.exports = {
     } catch(err) {
       return res.status(500).json({ message: 'Error api: ', err });
     }
+  },
+
+  async deleteAll(_req, res) {
+    const users = await User.destroy({ truncate: { cascade: true } });
+    return res.json(users);
   }
 };
