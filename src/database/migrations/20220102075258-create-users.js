@@ -9,7 +9,11 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      username: {
+      first_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      last_name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -23,6 +27,14 @@ module.exports = {
       },
       id_store: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      cnpj: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      birth_date: {
+        type: Sequelize.DATE,
         allowNull: false
       },
       created_at: {
