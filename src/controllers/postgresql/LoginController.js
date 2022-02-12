@@ -9,8 +9,8 @@ module.exports = {
         return next(resultLogin);
       }
   
-      const { id, username, email, id_store, token } = resultLogin;
-      return res.status(200).json({id, username, email, id_store, token});
+      const { id, first_name, email, id_store, token } = resultLogin;
+      return res.status(200).json({id, first_name, email, id_store, token});
     } catch (error) {
       return res.status(500).json({ message: 'Error api' });
     }

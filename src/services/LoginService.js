@@ -13,16 +13,16 @@ const LoginService = async ({ email, password }) => {
       return errorEmailInvalid('Error: Login email');
     }
     
-    const { id, username, id_store } = resultLogin.dataValues;
+    const { id, first_name, id_store } = resultLogin.dataValues;
     const { password: hash } = resultLogin.dataValues;
     
     if (bcrypt.compareSync(password, hash)) {
-      const token = await jwt.sign({ id, username, email }, process.env.SECRET, {
+      const token = await jwt.sign({ id, first_name, email }, process.env.SECRET, {
         expiresIn: 28800
       })
       return {
         id,
-        username,
+        first_name,
         email,
         id_store,
         token
